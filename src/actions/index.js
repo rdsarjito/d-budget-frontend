@@ -11,7 +11,7 @@ import {
   EMPTY_CATEGORY,
 } from '../constants/actionTypes';
 
-const API = `http://localhost:5001`;
+const API = process.env.REACT_APP_API_URL;
 
 export const loginGoogle = (code) => async dispatch => {
   const POST = {

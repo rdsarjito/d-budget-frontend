@@ -5,7 +5,7 @@ import { getCategory } from '../../actions';
 import FormCategory from '../../components/FormCategory';
 import ListData from '../../components/ListData';
 
-const API = `http://localhost:5001`;
+const API = process.env.REACT_APP_API_URL;
 
 const Category = () => {
   const dispatch = useDispatch();

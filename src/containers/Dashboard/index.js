@@ -6,7 +6,7 @@ import Doughnut from '../../components/Doughnut';
 
 import '../../style/style.css';
 
-const API = `http://localhost:5001`;
+const API = process.env.REACT_APP_API_URL;
 
 class DashboardContainer extends Component {
   state = {

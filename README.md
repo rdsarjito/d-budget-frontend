@@ -30,7 +30,7 @@
   - [Prasyarat](#1-prasyarat)
   - [Clone & Dependensi](#2-clone--dependensi)
   - [Konfigurasi Aplikasi](#3-konfigurasi-aplikasi)
-  - [Variabel Lingkungan](#4-variabel-lingkungan-opsional)
+  - [Variabel Lingkungan](#4-variabel-lingkungan)
   - [Jalankan Lokal](#5-jalankan-lokal)
 - [Penggunaan](#penggunaan)
 - [Tangkapan Layar](#tangkapan-layar)
@@ -86,28 +86,17 @@ yarn install
 ```
 
 ### 3) Konfigurasi Aplikasi
-Frontend saat ini menggunakan base URL API hardcode `http://localhost:5001` pada beberapa file:
+Aplikasi membaca base URL API dari variabel lingkungan sehingga tidak ada URL yang di-hardcode di source code.
+Pastikan backend berjalan dan alamatnya dicantumkan pada `REACT_APP_API_URL`.
 
-```text
-src/actions/index.js
-src/containers/Dashboard/index.js
-src/containers/Expense/index.js
-src/containers/Income/income.js
-src/containers/Category/index.js
-src/components/HistoryRow/index.js
-src/containers/Logout/index.js
-```
-
-Jika backend berjalan pada host/port lain, perbarui konstanta `API` pada file-file tersebut, atau lakukan refactor untuk membaca dari variabel lingkungan.
-
-### 4) Variabel Lingkungan (opsional)
-Belum ada `REACT_APP_*` yang digunakan. Jika ingin menambahkan, buat file `.env` di direktori `d-budget-frontend/` dan gunakan pola:
+### 4) Variabel Lingkungan
+Frontend membaca base URL API dari `process.env.REACT_APP_API_URL`.
 
 ```env
 REACT_APP_API_URL=http://localhost:5001
 ```
 
-Lalu ganti semua konstanta `API` agar membaca `process.env.REACT_APP_API_URL`.
+Pastikan file `.env` berada di folder `d-budget-frontend/` lalu restart dev server setelah mengubahnya.
 
 ### 5) Jalankan Lokal
 ```bash

@@ -6,7 +6,7 @@ import FormTransaction from '../../components/FormTransaction';
 import ListData from '../../components/ListData';
 import TotalCashFlow from '../../components/TotalCashFlow';
 
-const API = `http://localhost:5001`;
+const API = process.env.REACT_APP_API_URL;
 
 const Expense = () => {
   const dispatch = useDispatch();
