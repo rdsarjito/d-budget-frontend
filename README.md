@@ -1,70 +1,158 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="#">
+    <img src="src/images/d-logo.png?raw=true" alt="D-Budget Logo" width="120" />
+  </a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">D‑Budget – Manajemen Anggaran Pribadi</h1>
 
-## Available Scripts
+<p align="center">
+  Aplikasi web untuk mencatat pemasukan, pengeluaran, kategori, dan melihat ringkasan di dashboard.
+  <br/>
+  <a href="#penggunaan"><strong>Lihat cara penggunaan »</strong></a>
+  <br/>
+  <br/>
+  <a href="#instalasi">Instalasi</a>
+  ·
+  <a href="#kontribusi">Kontribusi</a>
+  ·
+  <a href="#lisensi">Lisensi</a>
+  
+</p>
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+## Daftar Isi
+- [Deskripsi](#deskripsi)
+- [Fitur](#fitur)
+- [Tech Stack](#tech-stack)
+- [Instalasi](#instalasi)
+  - [Prasyarat](#1-prasyarat)
+  - [Clone & Dependensi](#2-clone--dependensi)
+  - [Konfigurasi Aplikasi](#3-konfigurasi-aplikasi)
+  - [Variabel Lingkungan](#4-variabel-lingkungan-opsional)
+  - [Jalankan Lokal](#5-jalankan-lokal)
+- [Penggunaan](#penggunaan)
+- [Tangkapan Layar](#tangkapan-layar)
+- [Struktur Proyek](#struktur-proyek)
+- [Kontribusi](#kontribusi)
+- [Lisensi](#lisensi)
+- [Ucapan Terima Kasih](#ucapan-terima-kasih)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Deskripsi
+<p align="center">
+  <img src="src/images/d-budget.png" alt="Screenshot D-Budget" width="800" />
+  <br/>
+</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+D‑Budget adalah frontend React untuk aplikasi pengelolaan anggaran. Pengguna dapat masuk, menambahkan pemasukan/pengeluaran beserta kategori, melihat riwayat, serta memantau ringkasan saldo dan arus kas.
 
-### `yarn test`
+## Fitur
+- Manajemen pemasukan dan pengeluaran (CRUD)
+- Manajemen kategori transaksi
+- Ringkasan saldo dan arus kas pada dashboard (Chart.js)
+- Riwayat transaksi
+- Autentikasi pengguna (Login/Logout) dengan dukungan Google OAuth
+- Routing SPA dengan React Router
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
+<p>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-149ECA?style=for-the-badge&logo=react&logoColor=white" alt="React"/></a>
+  <a href="https://redux.js.org/"><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" alt="Redux"/></a>
+  <a href="https://reactrouter.com/"><img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router"/></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind"/></a>
+  <a href="https://styled-components.com/"><img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white" alt="styled-components"/></a>
+  <a href="https://www.chartjs.org/"><img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js"/></a>
+  <a href="https://headlessui.dev/"><img src="https://img.shields.io/badge/Headless%20UI-111827?style=for-the-badge" alt="Headless UI"/></a>
+</p>
 
-### `yarn build`
+## Instalasi
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1) Prasyarat
+- Node.js 14+ (disarankan 16/18)
+- npm 6+ atau yarn 1.x
+- Backend D‑Budget berjalan di `http://localhost:5001` (lihat folder `d-budget-backend`)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2) Clone & Dependensi
+```bash
+# Clone repo
+git clone https://github.com/<kamu>/d-budget.git
+cd d-budget/d-budget-frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install dependensi
+npm install
+# atau
+yarn install
+```
 
-### `yarn eject`
+### 3) Konfigurasi Aplikasi
+Frontend saat ini menggunakan base URL API hardcode `http://localhost:5001` pada beberapa file:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```text
+src/actions/index.js
+src/containers/Dashboard/index.js
+src/containers/Expense/index.js
+src/containers/Income/income.js
+src/containers/Category/index.js
+src/components/HistoryRow/index.js
+src/containers/Logout/index.js
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Jika backend berjalan pada host/port lain, perbarui konstanta `API` pada file-file tersebut, atau lakukan refactor untuk membaca dari variabel lingkungan.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 4) Variabel Lingkungan (opsional)
+Belum ada `REACT_APP_*` yang digunakan. Jika ingin menambahkan, buat file `.env` di direktori `d-budget-frontend/` dan gunakan pola:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```env
+REACT_APP_API_URL=http://localhost:5001
+```
 
-## Learn More
+Lalu ganti semua konstanta `API` agar membaca `process.env.REACT_APP_API_URL`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5) Jalankan Lokal
+```bash
+# Mode pengembangan
+npm start
+# atau
+yarn start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Aplikasi akan berjalan di http://localhost:3000
+```
 
-### Code Splitting
+## Penggunaan
+- Masuk melalui halaman Login (dukungan Google OAuth tersedia).
+- Tambahkan pemasukan/pengeluaran dengan memilih kategori.
+- Lihat ringkasan saldo dan arus kas di halaman Dashboard.
+- Kelola kategori pada menu Category.
+- Cek riwayat transaksi pada halaman History.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Tangkapan Layar
+- Tambahkan gambar UI ke folder `src/images/` dan tautkan di bagian ini.
 
-### Analyzing the Bundle Size
+## Struktur Proyek
+```
+.
+├─ craco.config.js
+├─ public/
+├─ src/
+│  ├─ actions/               # Aksi Redux (fetch API, dsb.)
+│  ├─ components/            # Komponen presentational (Header, Form, dsb.)
+│  ├─ containers/            # Halaman/route (Dashboard, Income, Expense, ...)
+│  ├─ reducers/              # Reducer Redux
+│  ├─ images/                # Aset gambar (logo: d-logo.png)
+│  ├─ style/                 # CSS (Tailwind + custom)
+│  └─ index.js               # Entry React
+└─ package.json              # Scripts (craco), dependensi
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Kontribusi
+1. Fork repository dan buat branch fitur/bugfix.
+2. Lakukan perubahan dengan commit message yang jelas.
+3. Pastikan tidak ada secret yang ter‑commit (gunakan `.env`).
+4. Buka Pull Request dengan deskripsi singkat dan screenshot bila perlu.
 
-### Making a Progressive Web App
+## Lisensi
+MIT License.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Ucapan Terima Kasih
+- Terinspirasi oleh struktur README dari template komunitas dan proyek open‑source.
