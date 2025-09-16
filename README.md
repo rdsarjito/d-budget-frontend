@@ -41,7 +41,7 @@
 
 ## Deskripsi
 <p align="center">
-  <img src="src/images/d-budget.png" alt="Screenshot D-Budget" width="800" />
+  <img src="src/images/d-budget.png" alt="Screenshot D-Budget" width="300" />
   <br/>
 </p>
 
